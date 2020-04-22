@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const Pessoas = require('../models/Pessoas');
+const Usuarios = require('../models/Usuarios');
 const TipoDocumento = require('../models/TipoDocumento');
 const Documentos = require('../models/Documentos');
 
@@ -14,10 +14,12 @@ const host = {
 
 const connection = new Sequelize(database, user, password, host);
 
-Pessoas.init(connection);
+Usuarios.init(connection);
 TipoDocumento.init(connection);
 Documentos.init(connection);
 
+Usuarios.associate(connection.models);
 TipoDocumento.associate(connection.models);
+Documentos.associate(connection.models);
 
 module.exports = connection;
