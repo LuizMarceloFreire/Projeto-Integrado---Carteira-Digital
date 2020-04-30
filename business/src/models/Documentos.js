@@ -10,12 +10,12 @@ class Documentos extends Model {
             sequelize
         });
     }
-    static init(models) {
-        this.hasOne(model.TiposDocumento, {
+    static associate(models) {
+        this.hasOne(models.TiposDocumento, {
             foreignKey: 'tipoDocumentoId',
             as: 'tipoDocumento',
         });
-        this.belongsTo(model.Usuarios, {
+        this.belongsTo(models.Usuarios, {
             foreignKey: 'usuarioId',
             as: 'usuario',
         })
