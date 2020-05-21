@@ -1,7 +1,4 @@
-import React from 'react';
-import { StyleSheet, Dimensions } from 'react-native';
-
-const screenHeight = Dimensions.get("window").height;
+import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
 
@@ -9,7 +6,6 @@ const styles = StyleSheet.create({
         paddingTop: 40,
         paddingLeft: 30,
         paddingRight: 30,
-        height: screenHeight,
         backgroundColor: '#42A8EB',
         height: '100%',
     },
