@@ -1,6 +1,6 @@
 module.exports = {
-    database: 'CarteiraDigital',
-    user: 'root',
+    database: 'carteira-digital',
+    username: 'root',
     password: '',
     host: '127.0.0.1',
     dialect: 'mysql',

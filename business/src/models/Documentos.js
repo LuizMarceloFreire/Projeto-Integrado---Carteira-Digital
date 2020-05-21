@@ -4,7 +4,7 @@ class Documentos extends Model {
     static init(sequelize) {
         super.init({
             imagem: DataTypes.BLOB(),
-            tipoDocumentosId: DataTypes.INTEGER(11),
+            tipoDocumentoId: DataTypes.INTEGER(11),
             usuarioId: DataTypes.INTEGER(11),
         }, {
             sequelize
