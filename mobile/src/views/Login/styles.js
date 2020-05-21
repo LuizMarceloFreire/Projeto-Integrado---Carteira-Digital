@@ -6,14 +6,29 @@ const screenHeight = Dimensions.get("window").height;
 const styles = StyleSheet.create({
 
     loginWrapper: {
-        marginTop: 80,
+        paddingTop: 40,
         paddingLeft: 30,
         paddingRight: 30,
         height: screenHeight,
+        backgroundColor: '#42A8EB',
+        height: '100%',
     },
     loginHellow: {
-        fontSize: 72,
-        marginBottom: 32,
+        fontSize: 35,
+        marginBottom: 40,
+        color: 'white',
+    },
+
+    logo: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: 30,
+    },
+
+    logoText: {
+        color: 'white',
+        fontSize: 16,
+        marginTop: 8,
     },
 
     formWripper: {
@@ -47,14 +62,14 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         height: 50,
-        backgroundColor: '#42a8eb',
+        backgroundColor: '#4246C8',
         borderRadius: 30,
     },
 
     buttonLoginText: {
         fontSize: 20,
         fontWeight: 'bold',
-        color: '#fff',
+        color: 'white',
         textTransform: 'uppercase',
     },
 
@@ -65,7 +80,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         height: 50,
-        backgroundColor: '#fff',
         borderRadius: 30,
     },
 
@@ -74,17 +88,16 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: '#000',
         textTransform: 'uppercase',
+        color: 'white',
     },
 
     textRed: {
         color: '#ff0505'
     },
 
-    textHelp:  {
-        position: 'absolute',
+    textHelp: {
         fontSize: 16,
-        bottom: 120,
-        left: 30,
+        top: 190,
     }
 
 

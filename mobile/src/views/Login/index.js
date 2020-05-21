@@ -1,11 +1,17 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image } from 'react-native';
 import styles from './styles';
+
+import logo from '../../assets/img/logo.png';
 
 const Login = () => {
     return (
         <View style={styles.loginWrapper}>
-            <Text style={styles.loginHellow}>Olá!</Text>
+            <Text style={styles.loginHellow}>Bem-Vindo(a)!</Text>
+            <View style={styles.logo}>
+                <Image source={logo} />
+                <Text style={styles.logoText}>Carteira Digital</Text>
+            </View>
             <View style={styles.formWripper}>
                 <TextInput style={styles.inputText}
                     underlineColorAndroid='rgba(0,0,0,0)'
