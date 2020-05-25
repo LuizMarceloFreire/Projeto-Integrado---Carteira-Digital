@@ -1,17 +1,12 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { View } from 'react-native';
 import Login from './src/views/Login';
+import Join from './src/views/Join';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Login />
+    <View>
+      <Join />
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-  },
-});
-

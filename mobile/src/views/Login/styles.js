@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     inputText: {
         width: '100%',
         fontSize: 22,
-        backgroundColor: '#e8e6e6',
+        backgroundColor: '#E8E6E6',
         borderColor: '#000',
         borderRadius: 30,
         height: 50,
@@ -92,8 +92,10 @@ const styles = StyleSheet.create({
     },
 
     textHelp: {
+        position: 'absolute',
         fontSize: 16,
-        top: 190,
+        left: 30,
+        bottom: 10,
     }
 
 
