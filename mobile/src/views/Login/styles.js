@@ -3,12 +3,14 @@ import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
 
     loginWrapper: {
-        paddingTop: 40,
+        paddingTop: 30,
         paddingLeft: 30,
         paddingRight: 30,
         backgroundColor: '#42A8EB',
         height: '100%',
+        justifyContent: 'space-between',
     },
+
     loginHellow: {
         fontSize: 35,
         marginBottom: 40,
@@ -86,19 +88,6 @@ const styles = StyleSheet.create({
         textTransform: 'uppercase',
         color: 'white',
     },
-
-    textRed: {
-        color: '#ff0505'
-    },
-
-    textHelp: {
-        position: 'absolute',
-        fontSize: 16,
-        left: 30,
-        bottom: 10,
-    }
-
-
 });
 
 export default styles;

@@ -22,14 +22,6 @@ const styles = StyleSheet.create({
         marginTop: 30,
     },
 
-    buttonsWrapperOne: {
-        width: '100%',
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginTop: 30,
-    },
-
     buttonJoin: {
         paddingLeft: 20,
         paddingRight: 20,
@@ -40,13 +32,25 @@ const styles = StyleSheet.create({
         backgroundColor: '#42A8EB'
     },
 
-    buttonBack: {
+    buttonFormBack: {
         width: 160,
         alignItems: 'center',
         justifyContent: 'center',
         height: 50,
         borderRadius: 20,
         backgroundColor: '#5cb85c'
+    },
+
+    buttonBack: {
+        paddingLeft: 20,
+        paddingRight: 20,
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: 50,
+        borderRadius: 20,
+        backgroundColor: 'white',
+        borderWidth: 1,
+        borderColor: 'black',
     },
 
     buttonJoinText: {
@@ -56,6 +60,14 @@ const styles = StyleSheet.create({
         textTransform: 'uppercase',
         color: 'white',
     },
+
+    buttonTextBack: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        color: '#000',
+        textTransform: 'uppercase',
+        color: 'black',
+    }
 });
 
 export default styles

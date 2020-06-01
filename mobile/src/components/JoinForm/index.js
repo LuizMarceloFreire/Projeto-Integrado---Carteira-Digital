@@ -3,7 +3,7 @@ import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 
 import styles from './styles';
 
-const JoinForm = () => {
+const JoinForm = ({ navigation }) => {
     const [isPassword, setIsPassword] = useState(false);
 
     const JoinButtons = () => {
@@ -20,10 +20,10 @@ const JoinForm = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                        style={styles.buttonBack}
+                        style={styles.buttonFormBack}
                     >
                         <Text style={styles.buttonJoinText}>
-                            Cadastre-se
+                            Cadastrar
                         </Text>
                     </TouchableOpacity>
                 </View>
@@ -31,7 +31,15 @@ const JoinForm = () => {
         }
 
         return (
-            <View style={styles.buttonsWrapperOne}>
+            <View style={styles.buttonsWrapper}>
+                <TouchableOpacity
+                    style={styles.buttonBack}
+                    onPress={() => navigation.goBack()}
+                >
+                    <Text style={styles.buttonTextBack}>
+                        login
+                    </Text>
+                </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.buttonJoin}
                     onPress={() => { setIsPassword(!isPassword) }}

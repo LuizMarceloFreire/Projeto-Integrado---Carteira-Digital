@@ -2,7 +2,6 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
     joinWrapper: {
-        paddingTop: 40,
         paddingLeft: 30,
         paddingRight: 30,
         height: '100%',
