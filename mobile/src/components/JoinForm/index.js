@@ -1,100 +1,100 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 
+import api from '../../services/api';
+
 import styles from './styles';
 
+
 const JoinForm = ({ navigation }) => {
-    const [isPassword, setIsPassword] = useState(false);
+    const [isLogin, setIsLogin] = useState(false);
 
-    const JoinButtons = () => {
-        if (isPassword) {
-            return (
-                <View style={styles.buttonsWrapper}>
-                    <TouchableOpacity
-                        style={styles.buttonJoin}
-                        onPress={() => { setIsPassword(!isPassword) }}
-                    >
-                        <Text style={styles.buttonJoinText}>
-                            Voltar
-                        </Text>
-                    </TouchableOpacity>
+    let nome;
+    let email;
+    let cpf;
+    let senha;
+    let confirmSenha;
 
-                    <TouchableOpacity
-                        style={styles.buttonFormBack}
-                    >
-                        <Text style={styles.buttonJoinText}>
-                            Cadastrar
-                        </Text>
-                    </TouchableOpacity>
-                </View>
-            );
+
+    const Join = () => {
+
+        if (nome && email && cpf && senha && confirmSenha) {
+            if (senha === confirmSenha) {
+                api.post('/usuarios', {
+                    nome,
+                    cpf,
+                    email,
+                    senha
+                }).then(res => {
+                    if (res.data) {
+                        console.log(res.data.message);
+                    } else {
+                        navigation.goBack();
+                    };
+                });
+            } else {
+                console.log('senha errada!');
+            }
         }
 
-        return (
-            <View style={styles.buttonsWrapper}>
-                <TouchableOpacity
-                    style={styles.buttonBack}
-                    onPress={() => navigation.goBack()}
-                >
-                    <Text style={styles.buttonTextBack}>
-                        login
-                    </Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    style={styles.buttonJoin}
-                    onPress={() => { setIsPassword(!isPassword) }}
-                >
-                    <Text style={styles.buttonJoinText}>
-                        Proximo
-                    </Text>
-                </TouchableOpacity>
-            </View>
-        );
-
     }
 
-    if (isPassword) {
-        return (
-            <View>
-                <TextInput style={styles.inputText}
-                    underlineColorAndroid='rgba(0,0,0,0)'
-                    placeholder='Senha'
-                    placeholderTextColor='#CCC'
-                />
-                <TextInput style={styles.inputText}
-                    underlineColorAndroid='rgba(0,0,0,0)'
-                    placeholder='Confirme a senha'
-                    placeholderTextColor='#CCC'
-                />
-                <JoinButtons />
-            </View>
-        );
-    }
+
     return (
         <>
             <TextInput style={styles.inputText}
                 underlineColorAndroid='rgba(0,0,0,0)'
                 placeholder='Nome'
                 placeholderTextColor='#CCC'
+                onChange={e => { nome = e.nativeEvent.text }}
             />
             <TextInput style={styles.inputText}
                 underlineColorAndroid='rgba(0,0,0,0)'
                 placeholder='E-mail'
                 placeholderTextColor='#CCC'
+                onChange={e => { email = e.nativeEvent.text }}
             />
             <TextInput style={styles.inputText}
                 underlineColorAndroid='rgba(0,0,0,0)'
-                placeholder='Telefone'
+                placeholder='CPF'
                 placeholderTextColor='#CCC'
+                onChange={e => { cpf = e.nativeEvent.text }}
             />
             <TextInput style={styles.inputText}
                 underlineColorAndroid='rgba(0,0,0,0)'
-                placeholder='Data de nascimento'
+                placeholder='Senha'
                 placeholderTextColor='#CCC'
+                onChange={e => { senha = e.nativeEvent.text }}
             />
-            <JoinButtons />
+            <TextInput style={styles.inputText}
+                underlineColorAndroid='rgba(0,0,0,0)'
+                placeholder='Confirme a senha'
+                placeholderTextColor='#CCC'
+                onChange={e => { confirmSenha = e.nativeEvent.text }}
+            />
+            <View style={styles.buttonsWrapper}>
+                <TouchableOpacity
+                    style={styles.buttonJoin}
+                    onPress={() => navigation.goBack()}
+                >
+                    <Text style={styles.buttonJoinText}>
+                        Voltar
+                    </Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                    style={styles.buttonFormBack}
+                    onPress={Join}
+                >
+                    <Text style={styles.buttonJoinText}>
+                        Cadastrar
+                    </Text>
+                </TouchableOpacity>
+            </View>
         </>
     );
+
+
 }
 
 export default JoinForm;

@@ -21,7 +21,6 @@ const Login = ({ navigation }) => {
     };
 
     const login = () => {
-        console.log(senha);
         if (cpf && senha && isCpf()) {
             api.post('/login', {
                 cpf,
