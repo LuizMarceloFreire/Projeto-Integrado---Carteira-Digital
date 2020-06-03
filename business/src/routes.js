@@ -1,7 +1,7 @@
 const express = require('express');
 
 const UsuariosController = require('./controllers/UsuariosController');
-const DocumentosController = require('./controllers/DecumentosController');
+const DocumentosController = require('./controllers/DocumentosController');
 
 const multer = require('multer');
 const memoryStorage = multer.memoryStorage();
