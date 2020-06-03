@@ -5,9 +5,9 @@
     "database": "carteira-digital",
     "host": "127.0.0.1",
     "dialect": "mysql",
-    "operatorsAliases": false,
+    "operatorsAliases": 0,
     "define": {
-      "timestamp": true
+      "timestamp": 1
     }
   },
   "test": {
@@ -16,7 +16,7 @@
     "database": "database_test",
     "host": "127.0.0.1",
     "dialect": "mysql",
-    "operatorsAliases": false
+    "operatorsAliases": 0
   },
   "production": {
     "username": "root",
@@ -24,6 +24,6 @@
     "database": "database_production",
     "host": "127.0.0.1",
     "dialect": "mysql",
-    "operatorsAliases": false
+    "operatorsAliases": 0
   }
 }
