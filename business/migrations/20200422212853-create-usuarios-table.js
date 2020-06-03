@@ -17,19 +17,12 @@ module.exports = {
         type: Sequelize.STRING(11),
         allowNull: false,
       },
-      dataNascimento: {
-        type: Sequelize.DATE(),
-        allowNull: false,
-      },
       email: {
         type: Sequelize.STRING(),
         allowNull: false,
       },
-      telefone: {
-        type: Sequelize.STRING(11),
-      },
-      sexo: {
-        type: Sequelize.STRING(1),
+      senha: {
+        type: Sequelize.STRING(),
         allowNull: false,
       },
       createdAt: Sequelize.DATE,

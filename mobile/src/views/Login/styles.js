@@ -1,18 +1,16 @@
-import React from 'react';
-import { StyleSheet, Dimensions } from 'react-native';
-
-const screenHeight = Dimensions.get("window").height;
+import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
 
     loginWrapper: {
-        paddingTop: 40,
+        paddingTop: 30,
         paddingLeft: 30,
         paddingRight: 30,
-        height: screenHeight,
         backgroundColor: '#42A8EB',
         height: '100%',
+        justifyContent: 'space-between',
     },
+
     loginHellow: {
         fontSize: 35,
         marginBottom: 40,
@@ -43,7 +41,7 @@ const styles = StyleSheet.create({
     inputText: {
         width: '100%',
         fontSize: 22,
-        backgroundColor: '#e8e6e6',
+        backgroundColor: '#E8E6E6',
         borderColor: '#000',
         borderRadius: 30,
         height: 50,
@@ -90,17 +88,6 @@ const styles = StyleSheet.create({
         textTransform: 'uppercase',
         color: 'white',
     },
-
-    textRed: {
-        color: '#ff0505'
-    },
-
-    textHelp: {
-        fontSize: 16,
-        top: 190,
-    }
-
-
 });
 
 export default styles;
