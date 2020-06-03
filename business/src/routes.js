@@ -1,33 +1,23 @@
 const express = require('express');
-const muter = require('multer');
-const storage = muter.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, './uploads/');
-    },
-
-    filename: (req, file, cb) => {
-        cb(null, Date.now() + '-' + file.originalname);
-    }
-});
-const memoruStorage = muter.memoryStorage();
-
-const upload = muter({ memoruStorage });
-const routes = express.Router();
 
 const UsuariosController = require('./controllers/UsuariosController');
 const DocumentosController = require('./controllers/DecumentosController');
 
-routes.get('/', (request, response) => {
-    response.send({
-        Resposta: 'deu certo',
-    });
-});
+const multer = require('multer');
+const memoryStorage = multer.memoryStorage();
+const upload = multer({ memoryStorage });
 
-routes.post('/login', UsuariosController.login);
+const routes = express.Router();
 
-routes.get('/documentos', DocumentosController.pegarDocumento);
+/*********************** Rotas ************************/
+
+// rotas de documentos.
+routes.get('/documentos/:usuarioId', DocumentosController.pegarTodosDocumentosPorUsuario);
+routes.get('/documentos/:usuarioId/:tipoDocumentoId', DocumentosController.pegarDocumentoPorUsuario);
 routes.post('/documentos', upload.single('imagem'), DocumentosController.create);
 
+// rotas de usuario.
 routes.post('/usuarios', UsuariosController.create);
+routes.post('/login', UsuariosController.login);
 
 module.exports = routes;
