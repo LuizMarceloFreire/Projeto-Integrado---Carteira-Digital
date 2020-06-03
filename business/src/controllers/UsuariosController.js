@@ -5,7 +5,7 @@ module.exports = {
         const { cpf, senha } = req.body;
 
         if (!cpf || !senha) {
-            return res.status(200).json({
+            return res.status(401).json({
                 message: 'envie todos os valores obrigatorios!'
             });
         }
@@ -17,11 +17,12 @@ module.exports = {
         });
 
         const userPassword = usuario.senha
+        const id = usuario.id
 
         if (userPassword === senha) {
-            return res.status(200).json({ result: true });
+            return res.status(200).json({ result: true, id });
         } else {
-            return res.status(200).json({ result: false });
+            return res.status(401).json({ result: false });
         }
     },
 
@@ -51,6 +52,6 @@ module.exports = {
             senha,
         });
 
-        return res.status(200).end();
+        return res.status(201).end();
     },
 }
