@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, View, TextInput, TouchableOpacity, Image } from 'react-native';
+import { Text, View, TextInput, TouchableOpacity, Image, AsyncStorage } from 'react-native';
 import styles from './styles';
 
 import api from '../../services/api';
@@ -27,7 +27,8 @@ const Login = ({ navigation }) => {
                 senha
             }).then(result => {
                 if (result.data.result) {
-                    console.log('senha correta');
+                    AsyncStorage.setItem('id', String(result.data.id));
+                    navigation.navigate('Dashboard');
                 } else {
                     console.log('!');
                 }

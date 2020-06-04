@@ -11,7 +11,7 @@ class Documentos extends Model {
         });
     }
     static associate(models) {
-        this.hasOne(models.TiposDocumento, {
+        this.belongsTo(models.TiposDocumento, {
             foreignKey: 'tipoDocumentoId',
             as: 'tipoDocumento',
         });

@@ -1,13 +1,30 @@
 const Documentos = require('../models/Documentos');
+const TiposDocumento = require('../models/TiposDocumento');
 
 module.exports = {
     async pegarTodosDocumentosPorUsuario(req, res) {
         const { usuarioId } = req.params;
-        const documentos = await Documentos.findAll({
+        let documentos = await Documentos.findAll({
             where: {
                 usuarioId,
-            }
+            },
+            include: [
+                {
+                    model: TiposDocumento,
+                    as: 'tipoDocumento',
+                }
+            ]
         });
+        documentos = await documentos.map(documento => {
+            const { id } = documento;
+            const { tipo } = documento.tipoDocumento;
+            return ({
+                id,
+                tipo,
+            });
+        });
+
+        console.log(documentos);
 
         return res.status(200).json(documentos);
     },
