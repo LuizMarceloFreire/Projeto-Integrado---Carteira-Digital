@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, AsyncStorage } from 'react-native';
 
 import ListOfDocuments from '../../components/ListOfDocuments';
+import ListTypesDocuments from '../../components/ListTypesDocuments';
 
 import api from '../../services/api';
 
@@ -10,6 +11,17 @@ import styles from './styles';
 const Dashboard = ({ navigation }) => {
 
     const [documents, setDocuments] = useState([]);
+
+    const typesList = [
+        {
+            id: 1,
+            typeName: 'CPF',
+        },
+        {
+            id: 2,
+            typeName: 'RG',
+        },
+    ];
 
     useEffect(() => {
         const getDocuments = async () => {
@@ -23,16 +35,7 @@ const Dashboard = ({ navigation }) => {
 
 
     return (
-        <View style={styles.deashbordWrapper}>
-            <View>
-                <ListOfDocuments documents={documents} />
-            </View>
-            <View style={styles.buttonAddDocumentWrapper}>
-                <View style={styles.buttonAddDocument}>
-                    <Text style={styles.buttonAddDocumentText}>+</Text>
-                </View>
-            </View>
-        </View>
+        <ListOfDocuments documents={documents}/>
     )
 }
 
