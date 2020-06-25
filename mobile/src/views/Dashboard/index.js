@@ -14,11 +14,11 @@ const Dashboard = ({ navigation }) => {
 
     const typesList = [
         {
-            id: 1,
+            id: 2,
             typeName: 'CPF',
         },
         {
-            id: 2,
+            id: 1,
             typeName: 'RG',
         },
     ];
@@ -35,7 +35,9 @@ const Dashboard = ({ navigation }) => {
 
 
     return (
-        <ListOfDocuments documents={documents}/>
+        <ListTypesDocuments typesList={typesList} />
+
+        //<ListOfDocuments documents={documents}/>
     )
 }
 
