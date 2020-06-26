@@ -1,25 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, Picker } from 'react-native';
+import { View, Text, Picker, StatusBar } from 'react-native';
 
 import styles from './styles';
-import { useSafeArea } from 'react-native-safe-area-context';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const ListTypesDocuments = ({ typesList }) => {
     let [typeDocumentSelected, setTypeDocumentSelected] = useState(typesList[0].typeName);
-    const insets = useSafeArea();
-
-    const safeAreaStyle = {
-        paddingTop: insets.top,
-    }
 
     const idDocument = typesList.find(
         typeDocument =>
             typeDocument.typeName === typeDocumentSelected
     ).id;
 
+    StatusBar.setBackgroundColor('#42A8EB');
+
     return (
-        <View style={[styles.listWrapper, safeAreaStyle]}>
+        <View style={styles.listWrapper}>
             <View>
                 <Text style={styles.title} >Qual o documento que ira adicionar?</Text>
                 <View style={styles.pickerBorder}>

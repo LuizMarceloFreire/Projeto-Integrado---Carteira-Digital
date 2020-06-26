@@ -1,16 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, AsyncStorage } from 'react-native';
+import { useSafeArea } from 'react-native-safe-area-context';
 
 import ListOfDocuments from '../../components/ListOfDocuments';
 import ListTypesDocuments from '../../components/ListTypesDocuments';
-
+import CameraToAddDocument from '../../components/CameraToAddDocument';
 import api from '../../services/api';
 
 import styles from './styles';
 
+
 const Dashboard = ({ navigation }) => {
 
     const [documents, setDocuments] = useState([]);
+    const insets = useSafeArea();
+
+    const safeAreaStyle = {
+        paddingTop: insets.top,
+    }
 
     const typesList = [
         {
@@ -35,9 +42,11 @@ const Dashboard = ({ navigation }) => {
 
 
     return (
-        <ListTypesDocuments typesList={typesList} />
-
-        //<ListOfDocuments documents={documents}/>
+        //<ListOfDocuments documents={documents} />
+        //<ListTypesDocuments typesList={typesList} />
+        <View style={safeAreaStyle} >
+            <CameraToAddDocument />
+        </View>
     )
 }
 
