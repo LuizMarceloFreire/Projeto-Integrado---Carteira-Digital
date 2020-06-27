@@ -43,7 +43,9 @@ module.exports = {
 
     async create(req, res) {
         const { tipoDocumentoId, usuarioId } = req.body;
-        const imagem = req.file.buffer;
+        const imagemDocumentoFrente = req.file.buffer;
+        const imagemDocumentoVerso = req.file.buffer;
+
 
         const jaExiste = await Documentos.findOne({
             where: {
@@ -55,7 +57,8 @@ module.exports = {
         if (jaExiste) {
             await Documentos.update(
                 {
-                    imagem,
+                    imagemDocumentoFrente,
+                    imagemDocumentoVerso,
                 },
                 {
                     where: {
@@ -67,7 +70,8 @@ module.exports = {
             await Documentos.create({
                 tipoDocumentoId,
                 usuarioId,
-                imagem,
+                imagemDocumentoFrente,
+                imagemDocumentoVerso,
             });
         };
 
