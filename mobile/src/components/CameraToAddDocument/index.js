@@ -43,13 +43,11 @@ const CameraToAddDocument = () => {
 
     const saveDocument = async () => {
         const id = await AsyncStorage.getItem('id');
-        console.log('enviando...');
         await api.post('/documentos', {
-            imagem: image,
+            imagemDocumentoFrente: image,
             tipoDocumentoId: 2,
             usuarioId: Number(id),
         });
-
         console.log('enviado!');
     }
 

@@ -9,9 +9,13 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,
       },
-      imagem: {
-        type: Sequelize.BLOB(),
+      imagemDocumentoFrente: {
+        type: Sequelize.BLOB('medium'),
         allowNull: false,
+      },
+      imagemDocumentoVerso: {
+        type: Sequelize.BLOB('medium'),
+        allowNull: true,
       },
       usuarioId: {
         type: Sequelize.INTEGER(11),

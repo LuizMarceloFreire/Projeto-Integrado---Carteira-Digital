@@ -42,8 +42,10 @@ module.exports = {
     },
 
     async create(req, res) {
-        const { tipoDocumentoId, usuarioId, imagem } = req.body;
-        const imageBuffer = await Buffer.from(imagem, "base64");
+        const { tipoDocumentoId, usuarioId, imagemDocumentoFrente, imagemDocumentoVerso } = req.body;
+        const imagemDocumentoFrenteBuffer = await Buffer.from(imagemDocumentoFrente, "base64");
+        const imagemDocumentoVersoBuffer = imagemDocumentoVerso ?
+            await Buffer.from(imagemDocumentoVerso, "base64") : null;
 
         const jaExiste = await Documentos.findOne({
             where: {
@@ -55,7 +57,8 @@ module.exports = {
         if (jaExiste) {
             await Documentos.update(
                 {
-                    imagem: imageBuffer,
+                    imagemDocumentoFrente: imagemDocumentoFrenteBuffer,
+                    imagemDocumentoVerso: imagemDocumentoVersoBuffer,
                 },
                 {
                     where: {
@@ -64,11 +67,11 @@ module.exports = {
                 }
             );
         } else {
-            console.log('não repetiu!');
             await Documentos.create({
                 tipoDocumentoId,
                 usuarioId,
-                imagem: imageBuffer,
+                imagemDocumentoFrente: imagemDocumentoFrenteBuffer,
+                imagemDocumentoVerso: imagemDocumentoVersoBuffer,
             });
         };
 
