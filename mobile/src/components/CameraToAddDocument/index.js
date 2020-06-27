@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View, Text, StatusBar, TouchableOpacity, Modal, Image } from 'react-native';
+import { View, Text, StatusBar, TouchableOpacity, Modal, Image, AsyncStorage } from 'react-native';
 import { Camera } from 'expo-camera';
 import { FontAwesome } from '@expo/vector-icons';
+import api from '../../services/api';
 
 import styles from './styles';
 
@@ -14,6 +15,7 @@ const CameraToAddDocument = () => {
     const [open, setOpen] = useState(false);
     const type = Camera.Constants.Type.back;
     const camRef = useRef(null);
+    const [image, setImage] = useState(null);
 
     useEffect(() => {
         (async () => {
@@ -32,10 +34,23 @@ const CameraToAddDocument = () => {
 
     const takePicture = async () => {
         if (camRef) {
-            const data = await camRef.current.takePictureAsync();
+            const data = await camRef.current.takePictureAsync({ base64: true });
+            setImage(data.base64);
             setCapturedPhoto(data.uri);
             setOpen(true);
         }
+    }
+
+    const saveDocument = async () => {
+        const id = await AsyncStorage.getItem('id');
+        console.log('enviando...');
+        await api.post('/documentos', {
+            imagem: image,
+            tipoDocumentoId: 2,
+            usuarioId: Number(id),
+        });
+
+        console.log('enviado!');
     }
 
     if (!hasPermission) {
@@ -52,6 +67,8 @@ const CameraToAddDocument = () => {
                 style={styles.camera}
                 type={type}
                 ref={camRef}
+                ratio="16:9"
+                pictureSize="65535"
             >
                 <TouchableOpacity
                     style={styles.cameraButton}
@@ -87,6 +104,7 @@ const CameraToAddDocument = () => {
 
                                 <TouchableOpacity
                                     style={styles.confirmButton}
+                                    onPress={saveDocument}
                                 >
                                     <Text style={styles.textButton}>Confirmar</Text>
                                 </TouchableOpacity>
@@ -97,7 +115,6 @@ const CameraToAddDocument = () => {
             </Camera>
         </View>
     )
-
 }
 
 export default CameraToAddDocument;
