@@ -5,7 +5,8 @@ class TiposDocumento extends Model {
         super.init({
             tipo: DataTypes.STRING(),
         }, {
-            sequelize
+            sequelize,
+            tableName: 'tipos-documento',
         });
     }
 

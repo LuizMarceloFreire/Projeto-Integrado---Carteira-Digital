@@ -15,7 +15,7 @@ class Usuarios extends Model {
 
     static associate(models) {
         this.hasMany(models.Documentos, {
-            foreignKey: 'usuarioId',
+            foreignKey: 'id',
             as: 'documentosUsuario'
         });
     }
