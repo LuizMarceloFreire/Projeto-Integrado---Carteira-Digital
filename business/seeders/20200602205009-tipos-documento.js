@@ -6,6 +6,7 @@ module.exports = {
     return queryInterface.bulkInsert('tipos-documento', [
       {
         tipo: 'RG',
+        temVerso: 1,
         createdAt: date,
         updatedAt: date,
       },

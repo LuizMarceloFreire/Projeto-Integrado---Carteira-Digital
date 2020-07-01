@@ -4,6 +4,7 @@ class TiposDocumento extends Model {
     static init(sequelize) {
         super.init({
             tipo: DataTypes.STRING(),
+            temVerso: DataTypes.BOOLEAN(),
         }, {
             sequelize,
             tableName: 'tipos-documento',

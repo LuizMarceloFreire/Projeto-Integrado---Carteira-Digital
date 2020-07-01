@@ -13,6 +13,10 @@ module.exports = {
         type: Sequelize.STRING(),
         allowNull: false,
       },
+      temVerso: {
+        type: Sequelize.BOOLEAN(),
+        allowNull: false,
+      },
       createdAt: Sequelize.DATE,
       updatedAt: Sequelize.DATE,
 

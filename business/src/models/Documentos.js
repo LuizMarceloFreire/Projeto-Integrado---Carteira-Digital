@@ -3,8 +3,8 @@ const { Model, DataTypes } = require('sequelize');
 class Documentos extends Model {
     static init(sequelize) {
         super.init({
-            imagemDocumentoFrente: DataTypes.BLOB('medium'),
-            imagemDocumentoVerso: DataTypes.BLOB('medium'),
+            imagemDocumentoFrente: DataTypes.STRING(),
+            imagemDocumentoVerso: DataTypes.STRING(),
             tipoDocumentoId: DataTypes.INTEGER(11),
             usuarioId: DataTypes.INTEGER(11),
         }, {

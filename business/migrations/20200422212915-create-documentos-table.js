@@ -10,11 +10,11 @@ module.exports = {
         primaryKey: true,
       },
       imagemDocumentoFrente: {
-        type: Sequelize.BLOB('medium'),
+        type: Sequelize.STRING(),
         allowNull: false,
       },
       imagemDocumentoVerso: {
-        type: Sequelize.BLOB('medium'),
+        type: Sequelize.STRING(),
         allowNull: true,
       },
       usuarioId: {
