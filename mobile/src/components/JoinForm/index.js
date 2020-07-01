@@ -7,14 +7,16 @@ import styles from './styles';
 
 
 const JoinForm = ({ navigation }) => {
-    const [isLogin, setIsLogin] = useState(false);
+    const [cpf, setCpf] = useState('');
+    const [nome, setNome] = useState('');
+    const [email, setEmail] = useState('');
 
-    let nome;
-    let email;
-    let cpf;
     let senha;
     let confirmSenha;
 
+    const setClearNumber = (number) => {
+        setCpf(number.replace(/[^0-9]/g, ""));
+    };
 
     const Join = () => {
 
@@ -26,7 +28,7 @@ const JoinForm = ({ navigation }) => {
                     email,
                     senha
                 }).then(res => {
-                    if (res.data) {
+                    if (res.data.message) {
                         console.log(res.data.message);
                     } else {
                         navigation.goBack();
@@ -39,38 +41,41 @@ const JoinForm = ({ navigation }) => {
 
     }
 
-
     return (
         <>
             <TextInput style={styles.inputText}
                 underlineColorAndroid='rgba(0,0,0,0)'
                 placeholder='Nome'
                 placeholderTextColor='#CCC'
-                onChange={e => { nome = e.nativeEvent.text }}
+                onChange={e => setNome(e.nativeEvent.text)}
             />
             <TextInput style={styles.inputText}
                 underlineColorAndroid='rgba(0,0,0,0)'
                 placeholder='E-mail'
                 placeholderTextColor='#CCC'
-                onChange={e => { email = e.nativeEvent.text }}
+                onChange={e => setEmail(e.nativeEvent.text)}
             />
             <TextInput style={styles.inputText}
                 underlineColorAndroid='rgba(0,0,0,0)'
                 placeholder='CPF'
                 placeholderTextColor='#CCC'
-                onChange={e => { cpf = e.nativeEvent.text }}
+                keyboardType='number-pad'
+                value={cpf}
+                onChange={(e) => setClearNumber(e.nativeEvent.text)}
             />
             <TextInput style={styles.inputText}
+                secureTextEntry={true}
                 underlineColorAndroid='rgba(0,0,0,0)'
                 placeholder='Senha'
                 placeholderTextColor='#CCC'
-                onChange={e => { senha = e.nativeEvent.text }}
+                onChange={e => senha = e.nativeEvent.text}
             />
             <TextInput style={styles.inputText}
+                secureTextEntry={true}
                 underlineColorAndroid='rgba(0,0,0,0)'
                 placeholder='Confirme a senha'
                 placeholderTextColor='#CCC'
-                onChange={e => { confirmSenha = e.nativeEvent.text }}
+                onChange={e => confirmSenha = e.nativeEvent.text}
             />
             <View style={styles.buttonsWrapper}>
                 <TouchableOpacity

@@ -2,10 +2,11 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
     deashbordWrapper: {
-        paddingTop: 30,
-        height: '100%',
+        flex: 1,
         flexDirection: 'column',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        backgroundColor: 'white',
+
     },
 
     buttonAddDocumentWrapper: {
@@ -17,16 +18,15 @@ const styles = StyleSheet.create({
     buttonAddDocument: {
         alignItems: 'center',
         justifyContent: 'center',
-        width: 80,
-        height: 80,
-        borderRadius: 50,
-        
+        width: 70,
+        height: 70,
+        borderRadius: 35,
         backgroundColor: '#42A8EB',
         paddingBottom: 10
     },
 
     buttonAddDocumentText: {
-        fontSize: 55,
+        fontSize: 50,
         color: 'white',
 
     }

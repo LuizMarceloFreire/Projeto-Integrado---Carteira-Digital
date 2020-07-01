@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { View, Text } from 'react-native';
-import { createStackNavigator, HeaderStyleInterpolators } from '@react-navigation/stack';
+import { createStackNavigator, HeaderStyleInterpolators, useIsFocused } from '@react-navigation/stack';
 import Login from './views/Login';
 import Join from './views/Join';
 import Dashboard from './views/Dashboard';
-
+import CreateNewDocument from './views/CreateNewDocument';
+import ShowDocument from './views/ShowDocument';
 
 const Routes = () => {
     const Stack = createStackNavigator();
@@ -25,6 +26,22 @@ const Routes = () => {
                 name="Dashboard"
                 component={Dashboard}
                 options={{ headerTitle: false }}
+            />
+            <Stack.Screen
+                name="ShowDocument"
+                component={ShowDocument}
+                options={{
+                    headerTitle: false,
+                    headerShown: true,
+                    headerTransparent: true,
+                    headerTintColor: '#FFF',
+                }}
+            />
+            <Stack.Screen
+                name="CreateNewDocument"
+                component={CreateNewDocument}
+                options={{ headerTitle: false }}
+
             />
         </Stack.Navigator>
     );

@@ -1,14 +1,19 @@
 import React, { useState } from 'react';
-import { Text, View, TextInput, TouchableOpacity, Image, AsyncStorage } from 'react-native';
+import { Text, View, TextInput, TouchableOpacity, Image, AsyncStorage, StatusBar } from 'react-native';
 import styles from './styles';
 
 import api from '../../services/api';
 
 import logo from '../../assets/img/logo.png';
 import NeedHelp from '../../components/NeedHelp';
+import { useFocusEffect } from '@react-navigation/native';
 
 
 const Login = ({ navigation }) => {
+
+    useFocusEffect(()=>{
+        StatusBar.setBackgroundColor('#42A8EB');
+    },[]);
 
     const [cpf, setCpf] = useState('');
     let senha = '';

@@ -2,20 +2,24 @@ import React, { useState, useEffect, useRef } from 'react';
 import { View, Text, StatusBar, TouchableOpacity, Modal, Image, AsyncStorage } from 'react-native';
 import { Camera } from 'expo-camera';
 import { FontAwesome } from '@expo/vector-icons';
-import api from '../../services/api';
+import { ImageManipulator } from 'expo-image-crop';
 
 import styles from './styles';
+import { useFocusEffect } from '@react-navigation/native';
+import { set } from 'react-native-reanimated';
 
-
-const CameraToAddDocument = () => {
-    StatusBar.setHidden(true);
+const CameraToAddDocument = ({ typeDocumentId, onConfirmedImage, onPressBack, hasVerse }) => {
+    useFocusEffect(() => {
+        StatusBar.setHidden(true);
+    }, []);
 
     const [hasPermission, setHasPermision] = useState(null);
-    const [capturedPhoto, setCapturedPhoto] = useState(null);
+    const [uri, setUri] = useState(null);
     const [open, setOpen] = useState(false);
     const type = Camera.Constants.Type.back;
     const camRef = useRef(null);
-    const [image, setImage] = useState(null);
+    const [imageBase64, setImageBase64] = useState(null);
+    const [imageVerseBase64, setImageVerseBase64] = useState(null);
 
     useEffect(() => {
         (async () => {
@@ -24,31 +28,72 @@ const CameraToAddDocument = () => {
         })();
     }, []);
 
+    const onToggleModal = () => {
+        setOpen(false);
+    }
+
+    const onPictureChoosed = async (res) => {
+        if (hasVerse) {
+            //tem verso.
+            if (res.base64 === undefined) {
+                // nao foi editado.
+                if (!imageVerseBase64) {
+                    //Estao primeira foto.
+                    setUri(null);
+                } else {
+                    onConfirmedImage({
+                        imageBase64,
+                        imageVerseBase64,
+                        typeDocumentId
+                    });
+                }
+
+            } else {
+                //foi editado
+                if (imageVerseBase64) {
+                    // e a segunda
+                    setImageVerseBase64(res.base64);
+                } else {
+                    // primeira.
+                    setImageBase64(res.base64);
+                    setUri(null);
+                }
+            }
+        } else {
+            //nao tem verso.
+            if (res.base64 !== undefined) {
+                //foi editado.
+                await setImageBase64(res.base64);
+            }
+            onConfirmedImage({
+                imageBase64,
+                imageVerseBase64,
+                typeDocumentId
+            });
+        }
+    }
+
+    const takePicture = async () => {
+        if (camRef) {
+            const data = await camRef.current.takePictureAsync({ base64: true });
+            setUri(data.uri);
+
+            if (hasVerse && imageBase64) {
+                setImageVerseBase64(data.base64);
+            } else {
+                setImageBase64(data.base64);
+            }
+
+            setOpen(true);
+        }
+    }
+
     if (hasPermission === null) {
         return (
             <View >
                 <Text>permisao null</Text>
             </View>
         )
-    }
-
-    const takePicture = async () => {
-        if (camRef) {
-            const data = await camRef.current.takePictureAsync({ base64: true });
-            setImage(data.base64);
-            setCapturedPhoto(data.uri);
-            setOpen(true);
-        }
-    }
-
-    const saveDocument = async () => {
-        const id = await AsyncStorage.getItem('id');
-        await api.post('/documentos', {
-            imagemDocumentoFrente: image,
-            tipoDocumentoId: 2,
-            usuarioId: Number(id),
-        });
-        console.log('enviado!');
     }
 
     if (!hasPermission) {
@@ -66,7 +111,6 @@ const CameraToAddDocument = () => {
                 type={type}
                 ref={camRef}
                 ratio="16:9"
-                pictureSize="65535"
             >
                 <TouchableOpacity
                     style={styles.cameraButton}
@@ -78,36 +122,38 @@ const CameraToAddDocument = () => {
                         color="#FFF"
                     />
                 </TouchableOpacity>
+
+                <TouchableOpacity
+                    style={styles.cameraBackButton}
+                    onPress={onPressBack}
+                >
+                    <Text>Voltar</Text>
+                </TouchableOpacity>
                 {
-                    capturedPhoto &&
+                    uri &&
                     <Modal
                         animationType="slide"
-                        transparent={false}
+                        transparent={true}
                         visible={open}
+                        style={{
+                            height: '100%',
+                            width: '100%',
+                        }}
                     >
-                        <View style={styles.showPictureWrapper}>
-                            <Image
-                                style={styles.showPictureImage}
-                                source={{
-                                    uri: capturedPhoto,
-                                }}
-                            />
-                            <View style={styles.buttonsWrapper}>
-                                <TouchableOpacity
-                                    style={styles.cancelButton}
-                                    onPress={() => setOpen(false)}
-                                >
-                                    <Text style={styles.textButton}>Cancelar</Text>
-                                </TouchableOpacity>
-
-                                <TouchableOpacity
-                                    style={styles.confirmButton}
-                                    onPress={saveDocument}
-                                >
-                                    <Text style={styles.textButton}>Confirmar</Text>
-                                </TouchableOpacity>
-                            </View>
-                        </View>
+                        <ImageManipulator
+                            saveOptions={{ base64: true }}
+                            photo={{ uri }}
+                            isVisible={true}
+                            onPictureChoosed={
+                                res => onPictureChoosed(res)
+                            }
+                            onToggleModal={onToggleModal}
+                            btnTexts={{
+                                crop: 'Recortar',
+                                done: 'Confirmar',
+                                processing: 'carregando...',
+                            }}
+                        />
                     </Modal>
                 }
             </Camera>

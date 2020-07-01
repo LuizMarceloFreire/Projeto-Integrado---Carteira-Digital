@@ -3,16 +3,21 @@ import { View, Text, Picker, StatusBar } from 'react-native';
 
 import styles from './styles';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { useFocusEffect } from '@react-navigation/native';
 
-const ListTypesDocuments = ({ typesList }) => {
-    let [typeDocumentSelected, setTypeDocumentSelected] = useState(typesList[0].typeName);
+const ListTypesDocuments = ({ typesList, onTypeDocumentChoosed, onPressBack }) => {
+    let [typeDocumentSelected, setTypeDocumentSelected] = useState(typesList[0].tipo);
 
-    const idDocument = typesList.find(
+    useFocusEffect(() => {
+        StatusBar.setHidden(false);
+        StatusBar.setBackgroundColor('#42ABEB');
+    }, []);
+
+
+    const { id, temVerso } = typesList.find(
         typeDocument =>
-            typeDocument.typeName === typeDocumentSelected
-    ).id;
-
-    StatusBar.setBackgroundColor('#42A8EB');
+            typeDocument.tipo === typeDocumentSelected
+    );
 
     return (
         <View style={styles.listWrapper}>
@@ -29,8 +34,8 @@ const ListTypesDocuments = ({ typesList }) => {
                         {typesList.map((typeDocument, index) => (
                             <Picker.Item
                                 key={index}
-                                label={typeDocument.typeName}
-                                value={typeDocument.typeName}
+                                label={typeDocument.tipo}
+                                value={typeDocument.tipo}
                             />
                         ))}
                     </Picker>
@@ -40,11 +45,17 @@ const ListTypesDocuments = ({ typesList }) => {
             <View style={styles.buttonsWrapper}>
                 <TouchableOpacity
                     style={styles.buttonBack}
+                    onPress={onPressBack}
                 >
-                    <Text style={styles.buttonText}>Volar</Text>
+                    <Text style={styles.buttonText}>Voltar</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.buttonGo}
+                    onPress={() => onTypeDocumentChoosed({
+                        typeDocumentId: id,
+                        hasVerse: temVerso,
+
+                    })}
                 >
                     <Text style={styles.buttonText} >Continuar</Text>
                 </TouchableOpacity>
