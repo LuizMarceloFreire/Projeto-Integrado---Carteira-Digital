@@ -1,22 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StatusBar, AsyncStorage } from 'react-native';
-import { useIsFocused } from '@react-navigation/native';
+import { View, AsyncStorage } from 'react-native';
 
 import ListTypesDocuments from '../../components/ListTypesDocuments';
-
-import styles from './styles';
-import api from '../../services/api';
 import CameraToAddDocument from '../../components/CameraToAddDocument';
 
-const CreateNewDocument = ({ navigation }) => {
-    const isFocused = useIsFocused();
+import api from '../../services/api';
 
+const CreateNewDocument = ({ navigation }) => {
     const [typesList, setTypesList] = useState([]);
     const [showCamera, setShowCamera] = useState(false);
     const [showListTypesDocuments, setShowListTypesDocuments] = useState(false);
     const [typeDocumentId, setTypeDocumentId] = useState(null);
     const [hasVerse, setHasVerse] = useState(null);
-
 
     useEffect(() => {
         const getTypesDocuments = async () => {
@@ -46,7 +41,6 @@ const CreateNewDocument = ({ navigation }) => {
                     typesList={typesList}
                     onTypeDocumentChoosed={
                         async (res) => {
-                            console.log(res.typeDocumentId);
                             await setTypeDocumentId(res.typeDocumentId);
                             await setHasVerse(res.hasVerse);
                             await setShowListTypesDocuments(false);

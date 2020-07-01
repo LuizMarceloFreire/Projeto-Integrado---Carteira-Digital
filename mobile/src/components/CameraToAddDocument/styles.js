@@ -35,6 +35,11 @@ const styles = StyleSheet.create({
         width: '90%',
         bottom: 10,
     },
+
+    modalStyle: {
+        height: '100%',
+        width: '100%',
+    },
 });
 
 export default styles;

@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { View, Text } from 'react-native';
-import { createStackNavigator, HeaderStyleInterpolators, useIsFocused } from '@react-navigation/stack';
+import { createStackNavigator } from '@react-navigation/stack';
 import Login from './views/Login';
 import Join from './views/Join';
 import Dashboard from './views/Dashboard';

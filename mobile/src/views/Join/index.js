@@ -15,7 +15,9 @@ const Join = ({ navigation }) => {
         <View style={styles.joinWrapper}>
             <View>
                 <Text style={styles.joinTitile}>Cadastre-se</Text>
-                <JoinForm navigation={navigation} />
+                <JoinForm
+                    navigation={navigation}
+                />
             </View>
 
             <NeedHelp />

@@ -26,8 +26,6 @@ module.exports = {
             });
         });
 
-        console.log(documentos);
-
         return res.status(200).json(documentos);
     },
 
@@ -130,7 +128,6 @@ module.exports = {
                 }
             );
         } else {
-            console.log(tipoDocumentoId);
             await Documentos.create({
                 tipoDocumentoId,
                 usuarioId,

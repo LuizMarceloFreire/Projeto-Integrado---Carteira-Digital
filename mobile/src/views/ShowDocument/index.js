@@ -3,7 +3,6 @@ import { View, Text, AsyncStorage, Image, StatusBar, TouchableOpacity, Modal } f
 
 import styles from './styles';
 import api from '../../services/api';
-import { useFocusEffect } from '@react-navigation/native';
 
 const ShowDocument = ({ route, navigation }) => {
     const { documentId } = route.params;
@@ -69,12 +68,6 @@ const ShowDocument = ({ route, navigation }) => {
                 >
                     <Text style={styles.buttonsText}>Delete</Text>
                 </TouchableOpacity>
-                <TouchableOpacity
-                    style={styles.buttonUpdate}
-                    activeOpacity={0.8}
-                >
-                    <Text style={styles.buttonsText}>Editar</Text>
-                </TouchableOpacity>
             </View>
             <Modal
                 style={{ flex: 1 }}
@@ -87,7 +80,7 @@ const ShowDocument = ({ route, navigation }) => {
                         <Text style={styles.messageConfirmDelete}>Deseja realmente deletar este documento?</Text>
                         <View style={styles.buttonsModalOptionsWrapper}>
                             <TouchableOpacity
-                                style={styles.buttonDelete}
+                                style={styles.buttonCancel}
                                 activeOpacity={0.8}
                                 onPress={() => setModalIsVisible(false)}
                             >

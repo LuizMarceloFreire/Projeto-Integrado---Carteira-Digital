@@ -11,9 +11,9 @@ import { useFocusEffect } from '@react-navigation/native';
 
 const Login = ({ navigation }) => {
 
-    useFocusEffect(()=>{
+    useFocusEffect(() => {
         StatusBar.setBackgroundColor('#42A8EB');
-    },[]);
+    }, []);
 
     const [cpf, setCpf] = useState('');
     let senha = '';
@@ -35,7 +35,7 @@ const Login = ({ navigation }) => {
                     AsyncStorage.setItem('id', String(result.data.id));
                     navigation.navigate('Dashboard');
                 } else {
-                    console.log('!');
+                    console.log(`erro: ${result}`);
                 }
             });
         }

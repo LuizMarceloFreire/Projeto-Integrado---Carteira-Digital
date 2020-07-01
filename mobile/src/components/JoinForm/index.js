@@ -5,8 +5,7 @@ import api from '../../services/api';
 
 import styles from './styles';
 
-
-const JoinForm = ({ navigation }) => {
+const JoinForm = ({ navigation, onPassWord }) => {
     const [cpf, setCpf] = useState('');
     const [nome, setNome] = useState('');
     const [email, setEmail] = useState('');
@@ -38,7 +37,6 @@ const JoinForm = ({ navigation }) => {
                 console.log('senha errada!');
             }
         }
-
     }
 
     return (
@@ -98,8 +96,6 @@ const JoinForm = ({ navigation }) => {
             </View>
         </>
     );
-
-
 }
 
 export default JoinForm;

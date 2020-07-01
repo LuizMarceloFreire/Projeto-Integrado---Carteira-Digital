@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text, AsyncStorage, StatusBar, TouchableOpacity, Button } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, AsyncStorage, StatusBar, TouchableOpacity } from 'react-native';
 import { useSafeArea } from 'react-native-safe-area-context';
 import { useIsFocused, useFocusEffect } from '@react-navigation/native';
 
 import ListOfDocuments from '../../components/ListOfDocuments';
-import CameraToAddDocument from '../../components/CameraToAddDocument';
-import ExpoImageCrop from '../../components/ExpoImageCrop/';
 import api from '../../services/api';
 
 import styles from './styles';
@@ -16,7 +14,6 @@ const Dashboard = ({ navigation }) => {
     useFocusEffect(() => {
         StatusBar.setHidden(false);
         StatusBar.setBackgroundColor('white');
-        getDocuments();
     }, []);
 
     const [documents, setDocuments] = useState([]);
@@ -25,6 +22,10 @@ const Dashboard = ({ navigation }) => {
     const safeAreaStyle = {
         paddingTop: insets.top,
     }
+
+    useEffect(() => {
+        getDocuments();
+    }, [isFocused]);
 
     const getDocuments = async () => {
         const id = await AsyncStorage.getItem('id');

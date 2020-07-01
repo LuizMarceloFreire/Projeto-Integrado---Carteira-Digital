@@ -41,18 +41,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#5cb85c'
     },
 
-    buttonBack: {
-        paddingLeft: 20,
-        paddingRight: 20,
-        alignItems: 'center',
-        justifyContent: 'center',
-        height: 50,
-        borderRadius: 20,
-        backgroundColor: 'white',
-        borderWidth: 1,
-        borderColor: 'black',
-    },
-
     buttonJoinText: {
         fontSize: 18,
         fontWeight: 'bold',
@@ -60,14 +48,6 @@ const styles = StyleSheet.create({
         textTransform: 'uppercase',
         color: 'white',
     },
-
-    buttonTextBack: {
-        fontSize: 18,
-        fontWeight: 'bold',
-        color: '#000',
-        textTransform: 'uppercase',
-        color: 'black',
-    }
 });
 
 export default styles

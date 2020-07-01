@@ -27,19 +27,12 @@ const styles = StyleSheet.create({
         width: '80%',
         height: '8%',
         alignItems: 'center',
-        justifyContent: 'space-between',
+        justifyContent: 'center',
         flexDirection: 'row',
     },
 
-    buttonUpdate: {
-        backgroundColor: '#0275d8',
-        paddingTop: 10,
-        paddingBottom: 10,
-        padding: 30,
-        borderRadius: 8,
-    },
-
     buttonDelete: {
+        width: '100%',
         backgroundColor: '#d9534f',
         paddingTop: 10,
         paddingBottom: 10,
@@ -56,6 +49,7 @@ const styles = StyleSheet.create({
     },
 
     buttonsText: {
+        textAlign: 'center',
         color: 'white',
         fontSize: 16,
     },
@@ -76,9 +70,9 @@ const styles = StyleSheet.create({
         borderRadius: 8,
     },
 
-    messageConfirmDelete:{
+    messageConfirmDelete: {
         fontSize: 20,
-        textAlign:'justify'
+        textAlign: 'justify'
     },
 
     buttonsModalOptionsWrapper: {
@@ -88,6 +82,13 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
 
+    buttonCancel: {
+        backgroundColor: '#d9534f',
+        paddingTop: 10,
+        paddingBottom: 10,
+        padding: 30,
+        borderRadius: 8,
+    },
 
 });
 

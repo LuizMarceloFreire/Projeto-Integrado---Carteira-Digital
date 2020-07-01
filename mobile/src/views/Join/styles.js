@@ -13,15 +13,6 @@ const styles = StyleSheet.create({
         fontSize: 40,
         marginBottom: 20,
     },
-    
-    textRed: {
-        color: '#ff0505'
-    },
-
-    textHelp: {
-        fontSize: 16,
-        marginBottom: 10,
-    }
 });
 
 export default styles;

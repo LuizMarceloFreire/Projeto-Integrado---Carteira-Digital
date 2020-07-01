@@ -1,12 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View, Text, StatusBar, TouchableOpacity, Modal, Image, AsyncStorage } from 'react-native';
+import { View, Text, StatusBar, TouchableOpacity, Modal } from 'react-native';
 import { Camera } from 'expo-camera';
 import { FontAwesome } from '@expo/vector-icons';
 import { ImageManipulator } from 'expo-image-crop';
 
 import styles from './styles';
 import { useFocusEffect } from '@react-navigation/native';
-import { set } from 'react-native-reanimated';
 
 const CameraToAddDocument = ({ typeDocumentId, onConfirmedImage, onPressBack, hasVerse }) => {
     useFocusEffect(() => {
@@ -135,10 +134,7 @@ const CameraToAddDocument = ({ typeDocumentId, onConfirmedImage, onPressBack, ha
                         animationType="slide"
                         transparent={true}
                         visible={open}
-                        style={{
-                            height: '100%',
-                            width: '100%',
-                        }}
+                        style={styles.modalStyle}
                     >
                         <ImageManipulator
                             saveOptions={{ base64: true }}
